@@ -48,6 +48,18 @@ test("GET /users obtiene todos los usuarios", async () => {
     expect(res.body).toBeInstanceOf(Array);
 });
 
+test("GET /users/:id obtiene usuarios por id", async () => {
+    const user = {
+        firstName: "Cristian"
+    }
+    const res = await request(app)
+        .get(`/users/${id}`)
+        .set('Authorization',`Bearer ${token}`);
+    expect(res.status).toBe(200);
+    expect(res.body).toBeInstanceOf(Object);
+    expect(res.body.firstName).toBe(user.firstName);
+});
+
 test("PUT /users/:id debe modificar un usuario", async () => {
     const user = {
         firstName: "Camilo"

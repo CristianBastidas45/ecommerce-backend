@@ -37,6 +37,14 @@ test('POST /products debe crear un producto', async () => {
     expect(res.body.title).toBe(newProduct.title);
 });
 
+test("GET /products/:id obtiene producto por id", async () => {
+    const res = await request(app)
+        .get(`/products/${id}`)
+        .set('Authorization',`Bearer ${token}`);
+    expect(res.status).toBe(200);
+    expect(res.body).toBeInstanceOf(Object);
+});
+
 test("PUT /products/:id debe modificar un producto", async () => {
     const product = {
         title: "galaxi actualizado"
